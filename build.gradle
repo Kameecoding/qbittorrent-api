@@ -1,11 +1,57 @@
 plugins {
-    id "java-library"
+	id "java-library"
 }
 
+group = "com.kameecoding"
+version = "0.01-SNAPSHOT"
+
 wrapper {
-    gradleVersion = "5.5.1"
+	gradleVersion = "5.5.1"
 }
 
 repositories {
-    mavenCentral()
+	mavenCentral()
+}
+
+sourceSets {
+	integrationTest {
+		java.srcDir file("src/integrationTest/java")
+		resources.srcDir file("src/integrationTest/resources")
+		compileClasspath += sourceSets.main.output + configurations.testRuntime + configurations.compileClasspath
+		runtimeClasspath += sourceSets.main.output + configurations.testRuntime
+	}
+}
+
+configurations {
+	integrationTestCompile.extendsFrom testCompile
+	integrationTestRuntime.extendsFrom testRuntime
+}
+
+dependencies {
+	implementation "org.apache.httpcomponents:httpclient:4.5.9"
+	implementation "org.apache.httpcomponents:httpmime:4.5.9"
+	implementation "com.fasterxml.jackson.core:jackson-core:2.9.9"
+	implementation "com.fasterxml.jackson.core:jackson-databind:2.9.9"
+	implementation "org.apache.logging.log4j:log4j-core:2.12.0"
+	implementation "commons-io:commons-io:2.6"
+
+	testImplementation "org.junit.jupiter:junit-jupiter-api:5.3.1"
+	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.3.1"
+
+	integrationTestImplementation "org.junit.jupiter:junit-jupiter-api:5.3.1"
+	integrationTestRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.3.1"
+}
+
+
+test {
+	useJUnitPlatform()
+}
+
+tasks.register("integrationTest", Test) {
+	group 'Verification'
+	description 'Runs the integration tests.'
+	useJUnitPlatform()
+
+	testClassesDirs = sourceSets.integrationTest.output.classesDirs
+	classpath = sourceSets.integrationTest.runtimeClasspath
 }
