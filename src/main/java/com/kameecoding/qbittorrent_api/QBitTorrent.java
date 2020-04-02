@@ -17,15 +17,17 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/** */
-public class Qbittorrent {
+/**
+ *
+ */
+public class QBitTorrent {
 
   private final URL WEB_UI_IP;
   private static final Pattern COOKIE_PATTERN = Pattern.compile("SID=(.*?);.*");
 
   private String cookie;
 
-  public Qbittorrent(URL webUiAdress) {
+  public QBitTorrent(URL webUiAdress) {
     WEB_UI_IP = webUiAdress;
   }
 

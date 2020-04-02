@@ -19,29 +19,27 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LoginTest {
 
   @Test
   void login() throws MalformedURLException {
-    Qbittorrent torrentClient = new Qbittorrent(new URL("http://localhost:8080"));
+    QBitTorrent torrentClient = new QBitTorrent(new URL("http://localhost:8080"));
     Assertions.assertNotNull(torrentClient.login("admin", "adminadmin"));
   }
 
   @Test
   void getTorrents() throws MalformedURLException {
-    Qbittorrent torrentClient = new Qbittorrent(new URL("http://localhost:8080"));
+    QBitTorrent torrentClient = new QBitTorrent(new URL("http://localhost:8080"));
     Assertions.assertNotNull(torrentClient.login("admin", "adminadmin"));
     TorrentsAPI.getTorrents(torrentClient);
   }
 
   @Test
   void addTorrent() throws MalformedURLException {
-    Qbittorrent torrentClient = new Qbittorrent(new URL("http://localhost:8080"));
+    QBitTorrent torrentClient = new QBitTorrent(new URL("http://localhost:8080"));
     Assertions.assertNotNull(torrentClient.login("admin", "adminadmin"));
     TorrentsAPI.addTorrent(
         torrentClient,
@@ -52,7 +50,7 @@ public class LoginTest {
 
   @Test
   void addFileTorrent() throws MalformedURLException, URISyntaxException {
-    Qbittorrent torrentClient = new Qbittorrent(new URL("http://localhost:8080"));
+    QBitTorrent torrentClient = new QBitTorrent(new URL("http://localhost:8080"));
     Assertions.assertNotNull(torrentClient.login("admin", "adminadmin"));
     URL resource = getClass().getResource("torrent.torrent");
     File torrent = new File(resource.toURI());
@@ -64,7 +62,7 @@ public class LoginTest {
 
   @Test
   void addByteTorrent() throws IOException, URISyntaxException {
-    Qbittorrent torrentClient = new Qbittorrent(new URL("http://localhost:8080"));
+    QBitTorrent torrentClient = new QBitTorrent(new URL("http://localhost:8080"));
     Assertions.assertNotNull(torrentClient.login("admin", "adminadmin"));
     URL resource = getClass().getResource("torrent.torrent");
     File torrent = new File(resource.toURI());

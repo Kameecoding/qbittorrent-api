@@ -29,7 +29,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.List;
 import java.util.Map;
 
 public class TorrentsAPI {
@@ -38,7 +37,7 @@ public class TorrentsAPI {
 
   private TorrentsAPI() {}
 
-  public static ArrayNode getTorrents(Qbittorrent qbittorrent) {
+  public static ArrayNode getTorrents(QBitTorrent qbittorrent) {
     ArrayNode result = null;
 
     try {
@@ -64,7 +63,7 @@ public class TorrentsAPI {
     return result;
   }
 
-  public static boolean addTorrent(Qbittorrent qbittorrent, String savePath, String... urls) {
+  public static boolean addTorrent(QBitTorrent qbittorrent, String savePath, String... urls) {
     try {
       URL url = qbittorrent.getURL(API_METHODS.ADD_TORRENT);
       CloseableHttpClient client = HttpClients.createDefault();
@@ -92,7 +91,7 @@ public class TorrentsAPI {
     return false;
   }
 
-  public static boolean addTorrent(Qbittorrent qbittorrent, String savePath, File... files) {
+  public static boolean addTorrent(QBitTorrent qbittorrent, String savePath, File... files) {
     try {
       URL url = qbittorrent.getURL(API_METHODS.ADD_TORRENT);
       CloseableHttpClient client = HttpClients.createDefault();
@@ -116,7 +115,7 @@ public class TorrentsAPI {
     return false;
   }
 
-  public static boolean addTorrent(Qbittorrent qbittorrent, String savePath, Map<String, byte[]> files) {
+  public static boolean addTorrent(QBitTorrent qbittorrent, String savePath, Map<String, byte[]> files) {
     try {
       URL url = qbittorrent.getURL(API_METHODS.ADD_TORRENT);
       CloseableHttpClient client = HttpClients.createDefault();
