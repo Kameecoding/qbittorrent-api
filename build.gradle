@@ -5,9 +5,7 @@ plugins {
 group = "com.kameecoding"
 version = "0.01-SNAPSHOT"
 
-wrapper {
-	gradleVersion = "5.5.1"
-}
+wrapper.gradleVersion = "5.6.2"
 
 repositories {
 	mavenCentral()
